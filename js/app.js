@@ -37,23 +37,22 @@ angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 })
 
 .controller('AboutController', function() {})
-.controller('ContactController', function($scope, DataTransfer) {
+.controller('ContactController', function($scope, $state, DataTransfer) {
 	var cc = this;
 	cc.formValid = false;
 	cc.emailSent = false;
 	cc.formData = {
 		name:'',
 		email:'',
-		phone:'',
 		message:''
 	};
 
 	$scope.$watchCollection(
 		function watchFormData() {
-			return [cc.formData.name, cc.formData.email]
+			return [cc.formData.name, cc.formData.email, cc.formData.message]
 		},
 		function handleFormDataChange() {
-			if (cc.formData.name && emailRegex.test(cc.formData.email)) {
+			if (cc.formData.name && emailRegex.test(cc.formData.email) && cc.formData.message) {
 				cc.formValid = true;
 			} else {
 				cc.formValid = false;
@@ -62,10 +61,15 @@ angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 	);
 
 	cc.submitForm = function() {
-		if (cc.formValid) {
-			DataTransfer.SendContactEmail(cc.formData);
+		// if (cc.formValid) {
+		// 	DataTransfer.SendContactEmail(cc.formData);
 			cc.emailSent = true;
-		}
+		// }
+	};
+
+	cc.goTo = function(pagename) {
+		$state.go(pagename);
+		$scope.showMenu = false;
 	};
 })
 .controller('TechnologiesController', function() {})
