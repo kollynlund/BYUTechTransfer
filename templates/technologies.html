@@ -13,13 +13,13 @@
 			</form>
 		</div>
 		<ul class="products">
-			<div class="technology-box" ng-repeat="technology in tc.technologies | filter:tc.searchText | filter:tc.categorySearch">
-				<a class="patent-info" href="" ng-click="tc.goToTech(technology['id#'])">
+			<div class="technology-box" ng-repeat="technology in technologies | filter:tc.searchText | filter:tc.categorySearch">
+				<a class="patent-info" href="" ng-click="tc.goToTech(technology.ID)">
 					<div class='patent-list'>
 						<div class='patent-container'>
-							<h2 id='patent-name'>{{technology.name}}</h2>
-							<span> ID: {{technology['id#']}}</span>
-							<p class='patent-description'>{{technology["short-description"]}}</p>
+							<h2 id='patent-name'>{{technology.Name}}</h2>
+							<span> ID: {{technology.ID}}</span>
+							<p class='patent-description'>{{technology["Short Description"]}}</p>
 						</div>
 					</div>
 				</a>
