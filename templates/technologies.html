@@ -8,13 +8,13 @@
 			<form>
 				<div class="group"><input class="search-box" placeholder="Search technologies..." type="text" name="s" ng-model="tc.searchText">
 				<div class="select-style">
-					<select name="c" ng-model="tc.selectedCategory" ng-options="category for category in tc.categories"></select>
+					<select name="c" ng-model="tc.categorySearch.categories" ng-options="category as (category === '' ? 'Show All' : category) for category in tc.categories"></select>
 				</div>
 			</form>
 		</div>
 		<ul class="products">
-			<div class="technology-box" ng-repeat="technology in tc.technologies | filter:tc.searchText">
-				<a class="patent-info" href="">
+			<div class="technology-box" ng-repeat="technology in tc.technologies | filter:tc.searchText | filter:tc.categorySearch">
+				<a class="patent-info" href="" ng-click="tc.goToTech(technology['id#'])">
 					<div class='patent-list'>
 						<div class='patent-container'>
 							<h2 id='patent-name'>{{technology.name}}</h2>
