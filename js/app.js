@@ -1,5 +1,8 @@
 window.googleDocCallback = function () { return true; };
 var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+String.prototype.toProperCase = function () {
+    return this.replace(/\b\w+/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
 
 angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 .config(function($stateProvider, $urlRouterProvider) {
@@ -43,7 +46,10 @@ angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 })
 .run(function($rootScope, TechnologyDetails) {
 	TechnologyDetails.getTechs().then(function(data) {
-		$rootScope.technologies = data;
+		$rootScope.technologies = data.technologies;
+		$rootScope.categories = data.categories;
+		$rootScope.categorySearch = {'Categories':'Show All'};
+		console.log(data.categories);
 	});
 })
 
@@ -71,8 +77,6 @@ angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 	var tc = this;
 
 	tc.searchText = '';
-	tc.categories = ['','Biotech/Medical','Chemistry','Data Storage','Diagnostics & Drug Delivery','Electronics & Instrumentation','Energy/Environment/Resources','Engineered Structures & Materials','Engineering','Food/Agriculture','Life Sciences','Mechanical Devices & Processes','Microfluidics','Pharmaceuticals/Nutraceuticals','Physics','Software'];
-	tc.categorySearch = {'Categories':''};
 
 	tc.goToTech = function(tech_id) {
 		$state.go('technology',{'tech_id':tech_id});
@@ -268,7 +272,7 @@ angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 		}
 	}
 })
-.factory('TechnologyDetails',function($http) {
+.factory('TechnologyDetails',function($http, _) {
 	var parseTechnology = function(tech_object) {
 		return {
 			'About the Market': tech_object.gsx$aboutthemarket.$t,
@@ -295,7 +299,17 @@ angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 				object.feed.entry.map(function(item){
 					result.push(parseTechnology(item));
 				});
-				return result;
+				var categories = result.map(function(technology) {
+					var pre = technology.Categories.split(',');
+					return pre.map(function(category) {
+						return category.toProperCase().trim();
+					});
+				});
+				categories = ['Show All'].concat(_.uniq([].concat.apply([],categories).filter(function(item){return !!item})));
+				return {
+					'technologies':result,
+					'categories':categories
+				};
 			})
 		}
 	};
@@ -306,4 +320,8 @@ angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 		getTitle: function(){return title;},
 		setTitle: function(newTitle){title=newTitle; return title;}
 	};
+})
+
+.factory('_',function() {
+	return _;
 });
