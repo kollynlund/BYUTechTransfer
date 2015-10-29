@@ -43,7 +43,6 @@ angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 })
 .run(function($rootScope, TechnologyDetails) {
 	TechnologyDetails.getTechs().then(function(data) {
-		console.log('technologies',data);
 		$rootScope.technologies = data;
 	});
 })
