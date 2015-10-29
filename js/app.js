@@ -72,7 +72,7 @@ angular.module('techtransfer',['ui.router','ui.bootstrap','ngAnimate'])
 
 	tc.searchText = '';
 	tc.categories = ['','Biotech/Medical','Chemistry','Data Storage','Diagnostics & Drug Delivery','Electronics & Instrumentation','Energy/Environment/Resources','Engineered Structures & Materials','Engineering','Food/Agriculture','Life Sciences','Mechanical Devices & Processes','Microfluidics','Pharmaceuticals/Nutraceuticals','Physics','Software'];
-	tc.categorySearch = {'categories':''};
+	tc.categorySearch = {'Categories':''};
 
 	tc.goToTech = function(tech_id) {
 		$state.go('technology',{'tech_id':tech_id});
