@@ -337,8 +337,9 @@ table {
       padding-top: 0px;
       font-size: .9em; } }
 
-.header .nav li.on a {
-  text-decoration: underline; }
+.header .nav li a:hover, .header .nav li a:active, .header .nav li a:focus {
+  color: #bbb;
+  background-color: transparent; }
 
 .header .nav li.shirts a {
   background-position: 0px 0px; }
@@ -1045,18 +1046,32 @@ body {
   border: 2px solid #ddd;
   display: inline-block; }
 
-.search-box {
-  margin: 10 auto !important;
-  width: 33%;
+#technologies .search-box {
+  width: 60%;
+  margin-bottom: 15px;
   display: inline-block;
-  height: 38px;
+  height: 39px;
   margin-top: 0px !important;
   border-radius: 3px;
   border: 2px solid #ddd;
   display: inline-block;
   padding-left: .5em; }
   @media (max-width: 760px) {
-    .search-box {
+    #technologies .search-box {
+      width: 100%;
+      display: block; } }
+#technologies .select-style {
+  width: 39.5%;
+  padding: 2.7px;
+  display: inline-block;
+  margin-top: 0px !important;
+  border: 2px solid #ddd;
+  border-radius: 3px;
+  background-color: #fff;
+  float: right;
+  background: #fff url("http://www.scottgood.com/jsg/blog.nsf/images/arrowdown.gif") no-repeat 90% 50%; }
+  @media (max-width: 760px) {
+    #technologies .select-style {
       width: 100%;
       display: block; } }
 
@@ -1098,20 +1113,6 @@ body {
 
 .warning {
   text-align: center; }
-
-.select-style {
-  width: 31%;
-  padding: 2.7px;
-  display: inline-block;
-  margin-top: 0px !important;
-  border: 2px solid #ddd;
-  border-radius: 3px;
-  background-color: #fff;
-  background: #fff url("http://www.scottgood.com/jsg/blog.nsf/images/arrowdown.gif") no-repeat 90% 50%; }
-  @media (max-width: 760px) {
-    .select-style {
-      width: 100%;
-      display: block; } }
 
 .select-style select {
   padding: 5px 8px;

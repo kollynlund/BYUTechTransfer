@@ -1,4 +1,4 @@
-<div class="section shirts page">
+<div id="technologies" class="section shirts page">
 	<div class="wrapper">
 		<div class="breadcrumb"><a href="" ng-click="tc.goTo('home')">Home</a> &gt; <a href="" ng-click="tc.goTo('technologies')">Technologies</a> </div>
 		<h1 style="margin-bottom: 0em;">BYU Technologies Available for License</h1>
@@ -6,10 +6,11 @@
 		<p>The following is a list of technologies currently available for license from BYU. Filter the list using the search box or category selector. Click on any invention for more information.</p>
 		<div class="search-container">
 			<form>
-				<div class="group"><input class="search-box" placeholder="Search technologies..." type="text" name="s" ng-model="tc.searchText">
-				<div class="select-style">
-					<select name="c" ng-model="tc.categorySearch.Categories" ng-options="category as (category === '' ? 'Show All' : category) for category in tc.categories"></select>
-				</div>
+				<div class="group filter">
+					<input class="search-box" placeholder="Search technologies..." type="text" name="s" ng-model="tc.searchText">
+					<div class="select-style">
+						<select name="c" ng-model="tc.categorySearch.Categories" ng-options="category as (category === '' ? 'Show All' : category) for category in tc.categories"></select>
+					</div>
 			</form>
 		</div>
 		<ul class="products">

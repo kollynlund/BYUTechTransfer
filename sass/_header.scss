@@ -99,13 +99,12 @@
 
 }
 
-.header .nav li.on a {
-    text-decoration: underline;
-}
 
-// .header .nav li a:hover, .header .nav li a:active {
-//     color: #FFE200;
-// }
+
+.header .nav li a:hover, .header .nav li a:active, .header .nav li a:focus {
+    color: #bbb;
+    background-color: transparent;
+}
 
 .header .nav li.shirts a {
     background-position: 0px 0px;
